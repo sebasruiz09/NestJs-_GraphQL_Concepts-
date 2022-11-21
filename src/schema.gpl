@@ -1,0 +1,71 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Todo {
+  id: Int!
+  description: String!
+  done: Boolean!
+}
+
+type categoriesTodo {
+  pending: Int! @deprecated(reason: "this method is deprecated")
+  passed: Int!
+  all: Int!
+}
+
+type Query {
+  """this is first user method"""
+  hello: String!
+
+  """generate a random number"""
+  randomNumber: Float!
+
+  """random number generated"""
+  randomFromZeroTo(initial: Int!, limit: Int = 6): Int!
+
+  """return array of string"""
+  testArray: [Todo!]!
+
+  """return one todo"""
+  testTodo(id: Int!): Todo!
+
+  """search Todo by one Filter"""
+  filterTodo(
+    """set value to filter results"""
+    status: Boolean!
+  ): [Todo!]!
+
+  """see all todos in categories"""
+  todoFilter: categoriesTodo!
+}
+
+type Mutation {
+  """create Todo Method"""
+  createTodo(createTodoInput: CreateTodoInput!): [Todo!]!
+
+  """update todo find by id"""
+  udpateTodo(id: Int!, updateInput: UpdateTodoInput): Todo!
+
+  """delete one todo by id"""
+  deleteTodo(id: Int!, validate: Boolean = false): Int!
+}
+
+input CreateTodoInput {
+  """id for todo"""
+  id: Int!
+
+  """what needs to be done"""
+  description: String!
+
+  """todo state"""
+  done: Boolean = true
+}
+
+input UpdateTodoInput {
+  """what needs to be done"""
+  description: String
+
+  """todo state"""
+  done: Boolean = true
+}
